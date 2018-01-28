@@ -28,10 +28,10 @@ app.post ('/todos', (req, res) => {
     });
 
     newUser.save().then((doc) => {
-        console.log (JSON.stringify(doc, undefined,2));
+        res.send (doc);
     }, (err) => {
-        console.log ('Error save newUser');
-    });
+        res.status(400).send(err);
+    }); 
 });
 
 app.get ('/todos', (req, res) => { 
