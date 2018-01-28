@@ -12,15 +12,26 @@ const port = process.env.PORT || 3000;
 app.use (bodyparser.json());
 
 app.post ('/todos', (req, res) => {
-    var newTodo = new Todo ({
-        TDName : req.body.TDName
-    });
+    // var newTodo = new Todo ({
+    //     TDName : req.body.TDName
+    // });
     
-    newTodo.save().then((doc) => {
-        res.send (doc);
+    // newTodo.save().then((doc) => {
+    //     res.send (doc);
+    // }, (err) => {
+    //     res.status(400).send(err);
+    // }); 
+
+    var newUser = new User ({
+        Name : req.body.Name,
+        Email : req.body.Email
+    });
+
+    newUser.save().then((doc) => {
+        console.log (JSON.stringify(doc, undefined,2));
     }, (err) => {
-        res.status(400).send(err);
-    }); 
+        console.log ('Error save newUser');
+    });
 });
 
 app.get ('/todos', (req, res) => { 
@@ -49,18 +60,11 @@ app.get ('/todos/:id', (req, res) => {
     });
 });
 
-app.listen (port);
+app.listen (port, () => {
+    console.log (`Port up at ${port}`);
+});
 
 module.exports = {app};
 
 
-// var newUser = new User ({
-//     Name : ' Reaham Badr  ',
-//     Email : ' r@h.com  '
-// });
 
-// newUser.save().then((doc) => {
-//     console.log (JSON.stringify(doc, undefined,2));
-// }, (err) => {
-//     console.log ('Error save newUser');
-// });
