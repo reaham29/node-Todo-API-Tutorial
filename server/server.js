@@ -23,11 +23,12 @@ app.post ('/todos', (req, res) => {
     // }); 
 
     var newUser = new User ({
-        Name : req.body.Name,
-        Email : req.body.Email
+        Name : "req.body.Name",
+        Email : "req.body.Email"
     });
 
-   res.send(req.body.Name, req.body.Email);
+  //  res.send(req.body.Name, req.body.Email);
+    
     newUser.save().then((doc) => {
         res.send (doc);
     }, (err) => {
